@@ -5,9 +5,9 @@ buscarLivrosAPI()
 async function buscarLivrosAPI() {
   const res = await fetch(endPointAPI) //sem o AWAIT  função não funciona
   livros = await res.json() //sem o AWAIT ele retornará somente a Promise
-  console.table(livros)
   let livrosComDesconto = aplicarDesconto(livros)
-  exibirLivrosNaTela(livrosComDesconto)
+  
+  exibirLivrosNaTela(livrosComDesconto) // nessa linha controlamos a exibição dos livros com o preço normal, ou com desconto
 }
 
 

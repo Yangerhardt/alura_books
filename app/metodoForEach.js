@@ -1,10 +1,17 @@
-const elementoParaInserirLLivros = document.querySelector("#livros")
+const elementoParaInserirLivros = document.querySelector("#livros");
+const elementoComValorTotalDeLivros = document.querySelector("#valor_total_livros_disponiveis")
 
 function exibirLivrosNaTela(listaDeLivros) {
-  listaDeLivros.forEach(livro => {
-    elementoParaInserirLLivros.innerHTML += `
+  elementoComValorTotalDeLivros.innerHTML = ""
+  elementoParaInserirLivros.innerHTML = ""; //funciona para o método filter! Sempre que clicar nos botões de filtragem, ele irá limpar os dados e depois aparecerá somente aqueles filtrados
+  listaDeLivros.forEach((livro) => {
+    let disponibilidade =
+      livro.quantidade > 0 ? "livro__imagens" : "livro__imagens indisponivel";
+    elementoParaInserirLivros.innerHTML += `
     <div class="livro">
-      <img class="livro__imagens" src="${livro.imagem}" alt="${livro.alt}" />
+      <img class="${disponibilidade}" src="${livro.imagem}" alt="${
+      livro.alt
+    }" />
       <h2 class="livro__titulo">
         ${livro.titulo}
       </h2>
@@ -14,6 +21,6 @@ function exibirLivrosNaTela(listaDeLivros) {
         <span class="tag">${livro.categoria}</span>
       </div>
     </div>
-    `
+    `;
   });
 }
